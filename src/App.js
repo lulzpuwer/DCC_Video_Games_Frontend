@@ -1,6 +1,13 @@
+// react imports
 import React, { useState, useEffect } from 'react';
-import GameTable from './Components/GameTable/GameTable'
+
+// Axios Imports
 import axios from 'axios';
+
+// Components
+import GameTable from './Components/GameTable/GameTable'
+import DataChart from './Components/DataChart/DataChart';
+
 
 function App() {
 
@@ -22,7 +29,7 @@ function App() {
   return (
     <div >
       <GameTable games ={games} />
-      
+      <DataChart games={games} />
    
     </div>
   );
