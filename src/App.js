@@ -15,16 +15,16 @@ function App() {
   const [games, setGames] = useState([])
   
   
-  useEffect(() => {
-    GetAllGames();
-  },[])
+  // useEffect(() => {
+  //   GetAllGames();
+  // },[])
 
 
-  async function GetAllGames(){
-    let response = await axios.get("https://localhost:7260/api/games/");
-    console.log(response.data);
-    setGames(response.data)
-  }
+  // async function GetAllGames(){
+  //   let response = await axios.get("https://localhost:7260/api/games/");
+  //   console.log(response.data);
+  //   setGames(response.data)
+  // }
 
   return (
     <div >

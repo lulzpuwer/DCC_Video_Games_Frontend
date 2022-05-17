@@ -6,10 +6,28 @@ const DataChart = (props) => {
 const [dataEntry, setDataEntry] = useState([]);
 
 useEffect(() => {
-  let tempData = props.games.map(game =>{
-    return [game.platform, game.globalSales]
-  });
-  setDataEntry(tempData)
+  GetAllGames();
+},[])
+
+
+async function GetAllGames(){
+  let response = await axios.get("https://localhost:7260/api/games/");
+  console.log(response.data);
+  setGames(response.data)
+}
+
+useEffect(() => {
+  // let pcGlobalSales = 0;
+  let pcSalesData = [];
+  console.log(props.games.length)
+  if(props.games.length !== 0){
+    pcSalesData = props.games.filter(
+      (game) => (game.platform == "PS3"))
+  }
+    // .reduce((prevGlobalSales, currentGlobelSales)=>prevGlobalSales+currentGlobelSales,pcGlobalSales) 
+  ;
+  console.log(pcSalesData)
+  setDataEntry(pcSalesData)
 },[])
 
 
