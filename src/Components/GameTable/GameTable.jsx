@@ -29,7 +29,7 @@ const GameTable = (props) => {
               <td>{game.year}</td>
               <td>{game.northAmericanSales}</td>
               <td>{game.europeSales}</td>
-              <td>{game.japanmSales}</td>
+              <td>{game.japanSales}</td>
               <td>{game.otherSales}</td>
               <td>{game.globalSales}</td>
               </tr>
