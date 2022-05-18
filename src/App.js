@@ -11,28 +11,36 @@ import DataChart from './Components/DataChart/DataChart';
 
 function App() {
 
+// all hooks for console global sales // ,"X360","PS3","DS","Wii","GBA","PS2","PS","SNES","NES","GB"
 
-  const [games, setGames] = useState([])
+  const [games, setGames] = useState([]);
   
   
-  // useEffect(() => {
-  //   GetAllGames();
-  // },[])
+  
+  
+  
+  useEffect(() => {
+    GetAllGames();
+  },[])
 
 
-  // async function GetAllGames(){
-  //   let response = await axios.get("https://localhost:7260/api/games/");
-  //   console.log(response.data);
-  //   setGames(response.data)
-  // }
+  async function GetAllGames(){
+    let response = await axios.get("https://localhost:7260/api/games/");
+    console.log(response.data);
+    setGames(response.data)
+  }
+
+  
 
   return (
     <div >
+      <DataChart games={games} setGames={setGames}/>
       <GameTable games ={games} />
-      <DataChart games={games} />
    
     </div>
   );
 
 }
+
 export default App;
+ 

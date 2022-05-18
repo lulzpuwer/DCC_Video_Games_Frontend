@@ -3,49 +3,44 @@ import {Chart} from "react-google-charts"
 
 const DataChart = (props) => {
 
+  
+  
+  
 const [dataEntry, setDataEntry] = useState([]);
 
-useEffect(() => {
-  GetAllGames();
-},[])
-
-
-async function GetAllGames(){
-  let response = await axios.get("https://localhost:7260/api/games/");
-  console.log(response.data);
-  setGames(response.data)
-}
-
-useEffect(() => {
-  // let pcGlobalSales = 0;
-  let pcSalesData = [];
-  console.log(props.games.length)
-  if(props.games.length !== 0){
-    pcSalesData = props.games.filter(
-      (game) => (game.platform == "PS3"))
-  }
-    // .reduce((prevGlobalSales, currentGlobelSales)=>prevGlobalSales+currentGlobelSales,pcGlobalSales) 
-  ;
-  console.log(pcSalesData)
-  setDataEntry(pcSalesData)
+useEffect( () => {
+  let tempDataEntry = props.games.map( entry => {
+    return [entry.platform, entry.globalSales]; 
+  });
+    setDataEntry(tempDataEntry)
+  console.log(dataEntry)
 },[])
 
 
 
-    return ( 
-      <Chart
-      chartType="Bar"
-      width="100%"
-      height="400px"
-      data={[["Console","Global Sales"], ...dataEntry]}
-    />
-    );
+  return ( 
+    <div className='top'>
+    <Chart 
+    chartType="Bar"
+    width="100%"
+    height="400px"
+    data={[["Console","Global Sales",] , ...dataEntry]}
+    options={{   
+      title: 'Global Sales per Console after 2013',
+      hAxis:{ title: "Global Sales"},
+      vAxis:{ minValue: 0}
 
     
-}
- 
-export default DataChart;
 
+    }}
+  />  
+  </div>
+  );
+
+   
+}
+
+export default DataChart;
 
 
 
